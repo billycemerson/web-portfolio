@@ -12,6 +12,7 @@ export interface SiteContent {
   hero: HeroProps;
   experience: ExperienceProps[];
   projects: ProjectProps[];
+  skills?: SkillsCategoryProps[];
   about: AboutProps;
 }
 
@@ -41,6 +42,17 @@ export interface ProjectProps {
 export interface AboutProps {
   description: string;
   image: string;
+}
+
+export interface SkillProps {
+  name: string;
+  logo: string;
+  category?: string;
+}
+
+export interface SkillsCategoryProps {
+  category: string;
+  skills: SkillProps[];
 }
 
 export interface HeaderProps {
