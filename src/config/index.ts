@@ -55,6 +55,13 @@ export const SITE_CONTENT: SiteContent = {
   ],
   projects: [
     {
+      name: "AC Stance API",
+      summary: "Build an API from a fine-tuned BERT model to classify public opinions on the Academy Crypto (AC) case into three categories: Support, Against, and Neutral.",
+      linkPreview: "https://huggingface.co/spaces/BillyCemerson/ac-stance-api",
+      linkSource: "https://github.com/billycemerson/ac-case-stance-analysis",
+      image: "/academy-crypto.jpg",
+    },
+    {
       name: "Bitcoin Price Forecasting using Hybrid Deep Learning",
       summary: "Apply Rolling Window Cross-Validation approach in two different BTC market scenarios (Bear and Bull) with Optuna.",
       linkPreview: "/",
