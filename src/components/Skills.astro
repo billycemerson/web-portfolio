@@ -17,22 +17,33 @@ const { skills } = Astro.props;
           <h3 class="mb-6 font-serif text-lg font-semibold text-white">
             {category.category}
           </h3>
-          <div class="grid grid-cols-3 gap-6 sm:grid-cols-4 md:grid-cols-6">
-            {category.skills.map((skill) => (
-              <div class="group flex flex-col items-center gap-2 transition-transform duration-200 hover:-translate-y-1">
-                <div class="flex h-16 w-16 items-center justify-center rounded-lg bg-slate-900 p-3 transition-all duration-200 group-hover:bg-blue-600/20">
-                  <img
-                    src={skill.logo}
-                    alt={skill.name}
-                    class="h-full w-full object-contain opacity-80 transition-opacity duration-200 group-hover:opacity-100"
-                  />
-                </div>
-                <span class="text-center text-xs text-slate-400 transition-colors duration-200 group-hover:text-blue-400">
+          
+          {category.category === "Technical Skills" ? (
+            <div class="flex flex-wrap gap-3">
+              {category.skills.map((skill) => (
+                <div class="px-5 py-2 rounded-full border-2 border-[#5755ff] text-[#5755ff] text-sm font-medium hover:bg-[#5755ff] hover:text-white transition-all duration-300 cursor-default shadow-sm shadow-[#5755ff]/10">
                   {skill.name}
-                </span>
-              </div>
-            ))}
-          </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div class="grid grid-cols-3 gap-6 sm:grid-cols-4 md:grid-cols-6">
+              {category.skills.map((skill) => (
+                <div class="group flex flex-col items-center gap-2 transition-transform duration-200 hover:-translate-y-1">
+                  <div class="flex h-16 w-16 items-center justify-center rounded-lg bg-slate-900 p-3 transition-all duration-200 group-hover:bg-blue-600/20">
+                    <img
+                      src={skill.logo}
+                      alt={skill.name}
+                      class="h-full w-full object-contain opacity-80 transition-opacity duration-200 group-hover:opacity-100"
+                    />
+                  </div>
+                  <span class="text-center text-xs text-slate-400 transition-colors duration-200 group-hover:text-blue-400">
+                    {skill.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       ))
     }

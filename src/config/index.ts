@@ -29,6 +29,7 @@ export const SITE_CONTENT: SiteContent = {
     summary:
       "Statistics graduate with a strong analytical foundation and hands-on experience in the end-to-end data science lifecycle.",
     email: "biliatocemerson@gmail.com",
+    cvLink: "/CV-Biliarto Sastro Cemerson.pdf",
   },
   experience: [
     {
@@ -83,6 +84,17 @@ export const SITE_CONTENT: SiteContent = {
     },
   ],
   skills: [
+    {
+      category: "Technical Skills",
+      skills: [
+        { name: "Statistical Data Analysis", logo: "" },
+        { name: "Predictive Modeling", logo: "" },
+        { name: "Natural Language Processing (NLP)", logo: "" },
+        { name: "Deep Learning", logo: "" },
+        { name: "Data Visualization", logo: "" },
+        { name: "Data Wrangling & Preprocessing", logo: "" },
+      ],
+    },
     {
       category: "Data Science & ML",
       skills: [

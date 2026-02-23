@@ -21,6 +21,7 @@ export interface HeroProps {
   specialty: string;
   summary: string;
   email: string;
+  cvLink?: string;
 }
 
 export interface ExperienceProps {
@@ -47,6 +48,7 @@ export interface AboutProps {
 export interface SkillProps {
   name: string;
   logo: string;
+  url?: string;
   category?: string;
 }
 
