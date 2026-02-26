@@ -64,7 +64,7 @@ export const SITE_CONTENT: SiteContent = {
     {
       name: "Bitcoin Price Forecasting using Hybrid Deep Learning",
       summary: "Apply Rolling Window Cross-Validation approach in two different BTC market scenarios (Bear and Bull) with Optuna.",
-      linkPreview: "/",
+      linkPreview: "https://huggingface.co/spaces/BillyCemerson/bitcoin-forecasting",
       linkSource: "https://github.com/billycemerson/btc-forecasting",
       image: "/bitcoin-chart.webp",
     },
