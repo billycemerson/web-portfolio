@@ -12,8 +12,8 @@ import "../styles/global.css";
 
 <Layout>
   <Hero {...SITE_CONTENT.hero} />
+  <About {...SITE_CONTENT.about} name={SITE_CONTENT.hero.name} />
   <Experience experience={SITE_CONTENT.experience} />
   <Projects projects={SITE_CONTENT.projects} />
   {SITE_CONTENT.skills && <Skills skills={SITE_CONTENT.skills} />}
-  <About {...SITE_CONTENT.about} name={SITE_CONTENT.hero.name} />
 </Layout>

@@ -8,52 +8,109 @@ interface Props {
 }
 
 const { projects } = Astro.props;
+
+const categories = ["Data Analysis", "Data Science", "Data Engineering"] as const;
 ---
 
 <Section text="Projects" href="projects">
-  {
-    projects.map(({ name, summary, image, linkPreview, linkSource }, index) => {
-      const top = 98 + index * 40;
-      return (
-        <div
-          style={`top: ${top}px;`}
-          class="sticky mb-12 rounded-2xl border border-neutral/20 bg-black"
+  <!-- Tab bar -->
+  <div class="mb-8 flex gap-2 flex-wrap" id="project-tabs">
+    {
+      categories.map((cat, i) => (
+        <button
+          data-tab={cat}
+          class:list={[
+            "tab-btn px-4 py-1.5 rounded-full text-sm font-medium border transition-colors",
+            i === 0
+              ? "border-primary bg-primary text-white"
+              : "border-neutral/30 text-neutral hover:border-primary hover:text-primary",
+          ]}
         >
-          <div class="bg-difu relative z-[1] grid h-auto w-full grid-cols-1 gap-4 rounded-2xl bg-[#1c232d]/85 before:absolute before:inset-0 before:z-[-1] before:rounded-2xl before:bg-[url(/raja.png)] before:bg-[length:128px] before:bg-repeat before:opacity-[5%] before:content-[''] sm:grid-cols-2 sm:h-96 sm:gap-0">
-            <div class="px-6 pt-6 sm:pt-12">
-              <h3 class="mb-5 font-serif text-3xl font-medium text-primary">
-                {name}
-              </h3>
-              <p class="text-base text-neutral">{summary}</p>
-              <div class="flex gap-5 pt-10 text-white">
-                <a
-                  href={linkSource}
-                  target="_blank"
-                  class="after:relative after:bottom-[-5px] after:content-[url(/external.svg)] hover:underline"
-                >
-                  Source
-                </a>
-                <a
-                  href={linkPreview}
-                  target="_blank"
-                  class="after:relative after:bottom-[-5px] after:content-[url(/external.svg)] hover:underline"
-                >
-                  Preview
-                </a>
+          {cat}
+        </button>
+      ))
+    }
+  </div>
+
+  <!-- Project groups, one per category -->
+  {
+    categories.map((cat) => {
+      const catProjects = projects.filter((p) => p.category === cat);
+      return (
+        <div class="project-group" data-group={cat} style={cat !== "Data Analysis" ? "display:none" : ""}>
+          {catProjects.map(({ name, summary, image, linkPreview, linkSource }, index) => {
+            const top = 98 + index * 40;
+            return (
+              <div
+                style={`top: ${top}px;`}
+                class="sticky mb-12 rounded-2xl border border-neutral/20 bg-black"
+              >
+                <div class="bg-difu relative z-[1] grid h-auto w-full grid-cols-1 gap-4 rounded-2xl bg-[#1c232d]/85 before:absolute before:inset-0 before:z-[-1] before:rounded-2xl before:bg-[url(/raja.png)] before:bg-[length:128px] before:bg-repeat before:opacity-[5%] before:content-[''] sm:grid-cols-2 sm:h-96 sm:gap-0">
+                  <div class="px-6 pt-6 sm:pt-12">
+                    <h3 class="mb-5 font-serif text-3xl font-medium text-primary">
+                      {name}
+                    </h3>
+                    <p class="text-base text-neutral">{summary}</p>
+                    <div class="flex gap-5 pt-10 text-white">
+                      {linkSource && linkSource !== "/" && (
+                        <a
+                          href={linkSource}
+                          target="_blank"
+                          class="after:relative after:bottom-[-5px] after:content-[url(/external.svg)] hover:underline"
+                        >
+                          Source
+                        </a>
+                      )}
+                      {linkPreview && linkPreview !== "/" && (
+                        <a
+                          href={linkPreview}
+                          target="_blank"
+                          class="after:relative after:bottom-[-5px] after:content-[url(/external.svg)] hover:underline"
+                        >
+                          Preview
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                  <div class="flex items-end justify-end overflow-hidden">
+                    <Image
+                      class="h-full w-[95%] rounded-ss-xl rounded-ee-2xl object-cover sm:h-[85%] sm:w-full"
+                      src={image}
+                      alt={name}
+                      width="580"
+                      height="580"
+                    />
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="flex items-end justify-end overflow-hidden">
-              <Image
-                class="h-full w-[95%] rounded-ss-xl rounded-ee-2xl object-cover sm:h-[85%] sm:w-full"
-                src={image}
-                alt={name}
-                width="580"
-                height="580"
-              />
-            </div>
-          </div>
+            );
+          })}
         </div>
       );
     })
   }
 </Section>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>(".tab-btn");
+  const groups = document.querySelectorAll<HTMLElement>(".project-group");
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const target = tab.dataset.tab!;
+
+      // Update tab styles
+      tabs.forEach((t) => {
+        t.classList.remove("border-primary", "bg-primary", "text-white");
+        t.classList.add("border-neutral/30", "text-neutral");
+      });
+      tab.classList.add("border-primary", "bg-primary", "text-white");
+      tab.classList.remove("border-neutral/30", "text-neutral");
+
+      // Show/hide groups
+      groups.forEach((g) => {
+        g.style.display = g.dataset.group === target ? "" : "none";
+      });
+    });
+  });
+</script>

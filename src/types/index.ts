@@ -36,13 +36,13 @@ export interface ProjectProps {
   name: string;
   summary: string;
   image: string;
+  category: "Data Analysis" | "Data Science" | "Data Engineering";
   linkPreview?: string;
   linkSource?: string;
 }
 
 export interface AboutProps {
   description: string;
-  image: string;
 }
 
 export interface SkillProps {
