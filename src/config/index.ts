@@ -96,6 +96,15 @@ export const SITE_CONTENT: SiteContent = {
       image: "/need-review.png",
     },
     {
+      name: "Indonesia GPR Index Dashboard",
+      summary:
+        "Created a Looker Studio dashboard visualizing the daily Geopolitical Risk Index for Indonesia, integrating data from multiple news sources and providing insights into political risk trends.",
+      category: "Data Analysis",
+      linkPreview: "https://datastudio.google.com/reporting/5fe226a0-a15e-4bb9-8d34-b552fbfdf413",
+      linkSource: "",
+      image: "/indo-gpr.png",
+    },
+    {
       name: "BMKG Earthquake Monitoring Dashboard",
       summary:
         "Built a Looker Studio monitoring dashboard covering seismic magnitude, depth distribution, geospatial mapping, and data quality metrics.",
