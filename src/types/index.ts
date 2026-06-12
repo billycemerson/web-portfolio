@@ -39,6 +39,7 @@ export interface ProjectProps {
   category: "Data Analysis" | "Data Science" | "Data Engineering";
   linkPreview?: string;
   linkSource?: string;
+  linkArticle?: string;
 }
 
 export interface AboutProps {

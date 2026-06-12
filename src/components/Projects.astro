@@ -38,7 +38,7 @@ const categories = ["Data Analysis", "Data Science", "Data Engineering"] as cons
       const catProjects = projects.filter((p) => p.category === cat);
       return (
         <div class="project-group" data-group={cat} style={cat !== "Data Analysis" ? "display:none" : ""}>
-          {catProjects.map(({ name, summary, image, linkPreview, linkSource }, index) => {
+          {catProjects.map(({ name, summary, image, linkPreview, linkSource, linkArticle }, index) => {
             const top = 98 + index * 40;
             return (
               <div
@@ -56,20 +56,41 @@ const categories = ["Data Analysis", "Data Science", "Data Engineering"] as cons
                         <a
                           href={linkSource}
                           target="_blank"
+                          rel="noopener noreferrer"
                           class="after:relative after:bottom-[-5px] after:content-[url(/external.svg)] hover:underline"
                         >
                           Source
                         </a>
                       )}
-                      {linkPreview && linkPreview !== "/" && (
+
+                      {linkPreview && linkPreview !== "/" && linkPreview !== "" && (
                         <a
                           href={linkPreview}
                           target="_blank"
+                          rel="noopener noreferrer"
                           class="after:relative after:bottom-[-5px] after:content-[url(/external.svg)] hover:underline"
                         >
                           Preview
                         </a>
                       )}
+
+                      {(() => {
+                        const articleRegex = /medium\.com|dev\.to|blog|\.md|\.html/;
+                        const articleUrl = (linkArticle && linkArticle !== "/" && linkArticle !== "")
+                          ? linkArticle
+                          : (linkPreview && articleRegex.test(linkPreview) ? linkPreview : null);
+
+                        return articleUrl ? (
+                            <a
+                              href={articleUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="after:relative after:bottom-[-5px] after:content-[url(/external.svg)] hover:underline"
+                            >
+                              Case Study
+                            </a>
+                        ) : null;
+                      })()}
                     </div>
                   </div>
                   <div class="flex items-end justify-end overflow-hidden">

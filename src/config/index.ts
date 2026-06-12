@@ -128,7 +128,8 @@ export const SITE_CONTENT: SiteContent = {
       summary:
         "End-to-end data pipeline ingesting 100+ seismic events from BMKG, enriched with province-level geocoding, magnitude/depth categorization, and data quality flags — feeding a live Looker Studio dashboard.",
       category: "Data Engineering",
-      linkPreview: "/",
+      linkArticle: "https://medium.com/@biliartocemerson/i-built-a-production-earthquake-monitoring-pipeline-for-indonesia-heres-what-i-learned-a5fe557e8d67",
+      linkPreview: "",
       linkSource: "https://github.com/billycemerson/earthquake-monitoring",
       image: "/bmkg-earthquake.png",
     },
